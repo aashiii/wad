@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EMAIL REGISTRATION</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        fieldset{
+            background-color: lemonchiffon;
+        }
+      .ca { display:block;}  
+      .sin { display:none;}
+      
+    </style>
+    <script>
+        function func()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="block"; 
+        }
+    </script>
+    <body>
+        <div align="center"> <fieldset class="ca" id="ca"> <legend align="center"> CREATE ACCOUNT</legend>
+        <form method="post" action="reg">
+            
+            <p><label>FIRST NAME <input type="text" name="fnm"></label></p>
+            <p><label>LAST NAME <input type="text" name="lnm"></label></p>
+            <p><label>DATE OF BIRTH <input type="date" name="dob"></label></p>            
+            <p><label>USER ID <input type="text" name="usr"></label></p>
+            <p><label>PASSWORD <input type="password" name="pass"></label></p>
+            <p><input type="submit" value="Register" ></p>
+        </form></div></fieldset>
+           
+        <p><b>aLrEaDy REGISTERED?tHeN SIGN IN</b></p>
+        <div align="center"><fieldset align="center" class="sin" id="sin">
+                <legend align="center">SiGnIn</legend>
+            <p><label>User <input type="text" name="usr"></label></p>
+            <p><label>Password <input type="password" name="pass"></label></p>
+            </fieldset></div>
+        <button onclick="func()">SIGN IN</button> 
+                
+    </body>
+</html>
