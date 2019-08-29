@@ -15,7 +15,14 @@ and open the template in the editor.
             background-color: lemonchiffon;
         }
       .ca { display:block;}  
-      .sin { display:none;}
+      .sin { display:none;
+             width:200px;
+            }
+      .del{ display:none;
+      width:200px;}
+      .upd{ display:none;}
+      .all{ display:none;
+      width:200px;}
       
     </style>
     <script>
@@ -24,27 +31,115 @@ and open the template in the editor.
             
          document.getElementById("ca").style.display="none";     
         document.getElementById("sin").style.display="block"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func1()
+        {
+            
+         document.getElementById("ca").style.display="block";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func2()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="block";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func3()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="block";
+        document.getElementById("all").style.display="none";
+        }
+        
+        function func4()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="block";
         }
     </script>
     <body>
+        
         <div align="center"> <fieldset class="ca" id="ca"> <legend align="center"> CREATE ACCOUNT</legend>
         <form method="post" action="reg">
             
             <p><label>FIRST NAME <input type="text" name="fnm"></label></p>
             <p><label>LAST NAME <input type="text" name="lnm"></label></p>
+            <p><label>ROLL NO <input type="number" name="rno"></label></p>
             <p><label>DATE OF BIRTH <input type="date" name="dob"></label></p>            
-            <p><label>USER ID <input type="text" name="usr"></label></p>
-            <p><label>PASSWORD <input type="password" name="pass"></label></p>
+            <p><label>ADDRESS <input type="address" name="adr"></label></p>
             <p><input type="submit" value="Register" ></p>
-        </form></div></fieldset>
+         </form>
+             
+             </div></fieldset>
            
-        <p><b>aLrEaDy REGISTERED?tHeN SIGN IN</b></p>
+<!--        
         <div align="center"><fieldset align="center" class="sin" id="sin">
                 <legend align="center">SiGnIn</legend>
+                <form method="post" action="login">
             <p><label>User <input type="text" name="usr"></label></p>
             <p><label>Password <input type="password" name="pass"></label></p>
-            </fieldset></div>
-        <button onclick="func()">SIGN IN</button> 
-                
+            <p><input type="submit" value="sign in"></p>
+                </form>
+              <p><b>NOT REGISTERED?tHeN Create account</b></p>
+            <button onclick="func1()">Create account</button>   
+            </fieldset></div>-->
+            
+        <div><fieldset class="sin" id="sin"> <legend align="center"> SEARCH</legend>
+                <form action="search" method="post"> 
+                    <p>Roll no <input type="number" name="rno"></p>
+                    <p><input type="submit" value="Search"></p>
+                </form>
+                 
+                </fieldset>
+        </div>
+         <div><fieldset class="del"  id="del"> <legend align="center"> Deletion</legend>
+                <form action="del" method="post"> 
+                    <p>Roll no <input type="number" name="rno"></p>
+                    <p><input type="submit" value="Delete"></p>
+                </form>
+                 
+                </fieldset>
+        </div>
+        <div><fieldset class="upd" id="upd"> <legend align="center">Updation</legend>
+                <form action="upd" method="post"> 
+                    <p>Roll no <input type="number" name="rno"></p>
+                    <p><label>FIRST NAME <input type="text" name="fnm"></label></p>
+                    <p><label>LAST NAME <input type="text" name="lnm"></label></p>
+                    <p><label>DATE OF BIRTH <input type="date" name="dob"></label></p>            
+                    <p><label>ADDRESS <input type="address" name="adr"></label></p>
+                    
+                    <p><input type="submit" value="Update"></p>
+                </form>
+                 
+                </fieldset>
+        </div>
+        <div><fieldset class="all"  id="all"> <legend align="center"> All</legend>
+                <form action="all" method="post"> 
+                      <p><input type="submit" value="Print All"></p>
+                </form>
+                 
+                </fieldset>
+        </div>
+            <button onclick="func1()">Register</button> 
+            <button onclick="func()">Search</button> 
+            <button onclick="func2()">Deletion</button>
+            <button onclick="func3()">Updation</button>     
+            <button onclick="func4()">All</button>    
     </body>
 </html>

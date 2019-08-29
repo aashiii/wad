@@ -9,19 +9,18 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.sql.*;
 /**
  *
  * @author wad13
  */
-@WebServlet(urlPatterns = {"/reg"})
-public class reg extends HttpServlet {
+@WebServlet(urlPatterns = {"/login"})
+public class login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class reg extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet reg</title>");            
+            out.println("<title>Servlet login</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet reg at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,37 +74,52 @@ public class reg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String url = "jdbc:postgresql://localhost:5432/student";
-        String user = "postgres";
-        String password = "root";
-        String _firstname = request.getParameter("fnm");
-        String _lastname = request.getParameter("lnm");
-        String dob=request.getParameter("dob");
-        String rno = request.getParameter("rno");
-        String addr = request.getParameter("adr");
-        PrintWriter out = response.getWriter();
-        
-            try{
-                    Class.forName("org.postgresql.Driver");
-            }
-            catch(ClassNotFoundException e){
-             out.print(e.getMessage());
-            }
-            try{
-            Connection connection;
-                connection = DriverManager.getConnection(url, user, password);
+        Connection connection;
+    String url = "jdbc:postgresql://localhost:5432/student";
+    String user = "postgres";
+    String pass = "root";
+    PrintWriter out = response.getWriter();
+               try {        
+            Class.forName("org.postgresql.Driver");    
+        } catch(ClassNotFoundException e ){
+              //e.getMessage();
+              out.println(e.getMessage());
+        }    
+        try {
+                String _username = request.getParameter("usr");
+                String _password = request.getParameter("pass");
+                String username = null;
+                String password = null;
+                Boolean found = false;
+                connection = DriverManager.getConnection(url, user, pass);
                 out.println("Connected");
-                Statement stmt = connection.createStatement();                
-                int i = stmt.executeUpdate("INSERT INTO stndt(Firstname, Lastname, Dob, Rollno,Address ) VALUES ('"+_firstname+"','"+ _lastname+"','"+ dob+"','"+rno+"','" +addr +"');");
-    
-        out.println(i);
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from stdata");
+                while(rs.next())
+                {
+                    username = rs.getString("username");
+                    password = rs.getString("password");
+                    if (username.equals(_username)&&password.equals(_password))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (true == found)
+                {                    
+                   out.println("Login success");                   
+                }
+                else
+                {
+                    out.println("Login Failed");
+                }
                 connection.close();
         } catch (SQLException ex) {
         out.println(ex.getMessage());        
-        }
-//    PrintWriter out = response.getWriter();
-//    out.println("Yo");
-}
+        }   
+    
+    }
+
     /**
      * Returns a short description of the servlet.
      *

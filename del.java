@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author wad13
  */
-@WebServlet(urlPatterns = {"/reg"})
-public class reg extends HttpServlet {
+@WebServlet(urlPatterns = {"/del"})
+public class del extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class reg extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet reg</title>");            
+            out.println("<title>Servlet del</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet reg at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet del at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,37 +76,32 @@ public class reg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String url = "jdbc:postgresql://localhost:5432/student";
-        String user = "postgres";
-        String password = "root";
-        String _firstname = request.getParameter("fnm");
-        String _lastname = request.getParameter("lnm");
-        String dob=request.getParameter("dob");
-        String rno = request.getParameter("rno");
-        String addr = request.getParameter("adr");
-        PrintWriter out = response.getWriter();
-        
-            try{
-                    Class.forName("org.postgresql.Driver");
-            }
-            catch(ClassNotFoundException e){
-             out.print(e.getMessage());
-            }
-            try{
-            Connection connection;
-                connection = DriverManager.getConnection(url, user, password);
+       Connection connection;
+    String url = "jdbc:postgresql://localhost:5432/student";
+    String user = "postgres";
+    String pass = "root";
+    PrintWriter out = response.getWriter();
+               try {        
+            Class.forName("org.postgresql.Driver");    
+        } catch(ClassNotFoundException e ){
+              //e.getMessage();
+              out.println(e.getMessage());
+        }    
+        try {
+                String rno=request.getParameter("rno");
+                String _rno = null;
+                Boolean found = false;
+                connection = DriverManager.getConnection(url, user, pass);
                 out.println("Connected");
-                Statement stmt = connection.createStatement();                
-                int i = stmt.executeUpdate("INSERT INTO stndt(Firstname, Lastname, Dob, Rollno,Address ) VALUES ('"+_firstname+"','"+ _lastname+"','"+ dob+"','"+rno+"','" +addr +"');");
-    
-        out.println(i);
+                Statement stmt = connection.createStatement();
+                int i=stmt.executeUpdate("delete from stndt where rollno ='"+rno+"';");
+                out.println(i);
                 connection.close();
         } catch (SQLException ex) {
         out.println(ex.getMessage());        
-        }
-//    PrintWriter out = response.getWriter();
-//    out.println("Yo");
-}
+        }   
+    }
+
     /**
      * Returns a short description of the servlet.
      *
