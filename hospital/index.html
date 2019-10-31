@@ -1,0 +1,151 @@
+<!--!DOCTYPE html>-->
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>HOSPITAL</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        fieldset{
+            background-color: #e3e2ee;
+        }
+      .ca { display:block;
+             width:200px;}  
+      .sin { display:none;
+             width:200px;
+            }
+      .del{ display:none;
+      width:200px;}
+      .upd{ display:none;
+             width:200px;}
+      .all{ display:none;
+      width:200px;}
+      .wrapper {
+     text-align: center;
+        }
+
+    .button {
+    position: absolute;
+    top: 50%;
+}
+      
+    </style>
+    <script>
+        function func()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="block"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func1()
+        {
+            
+         document.getElementById("ca").style.display="block";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func2()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="block";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="none";
+        }
+        function func3()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="block";
+        document.getElementById("all").style.display="none";
+        }
+        
+        function func4()
+        {
+            
+         document.getElementById("ca").style.display="none";     
+        document.getElementById("sin").style.display="none"; 
+        document.getElementById("del").style.display="none";
+        document.getElementById("upd").style.display="none";
+        document.getElementById("all").style.display="block";
+        }
+    </script>
+
+    <body>
+   <div align="center">
+         <fieldset class="ca" id="ca"> <legend align="center"> Enroll Patients</legend>
+        <form method="post" action="en.jsp">
+            
+            <p><label> NAME <input type="text" name="nm"></label></p>
+            <p><label> DATE OF BIRTH <input type="date" name="dob"></label></p>
+            <p><label> HEIGHT <input type="text" name="ht"></label></p>
+            <p><label> WEIGHT <input type="text" name="wt"></label></p>
+            <p><label> BLOOD GROUP <input type="text" name="bg"></label></p>
+            <p><label> DISEASE <input type="text area" name="ds"></label></p>
+            <p><label>ADDRESS <input type="address" name="adr"></label></p>
+            <p><input type="submit" value="Enroll" ></p>
+         </form>
+             
+             </fieldset>
+         
+
+            
+        <fieldset class="sin" id="sin"> <legend align="center"> SEARCH</legend>
+                <form action="search.jsp" method="post"> 
+                    <p>MR ID <input type="text" name="mr"></p>
+                    <p><input type="submit" value="Search"></p>
+                </form>
+                 
+                </fieldset>
+        
+         <fieldset class="del"  id="del"> <legend align="center"> Deletion</legend>
+                <form action="del.jsp" method="post"> 
+                    <p>MR ID <input type="text" name="mr"></p>
+                    <p><input type="submit" value="Delete"></p>
+                </form>
+                 
+                </fieldset>
+        
+        <fieldset class="upd" id="upd"> <legend align="center">Updation</legend>
+                <form action="upd,jsp" method="post"> 
+                    <p><label> NAME <input type="text" name="nm"></label></p>
+                    <p><label> HEIGHT <input type="text" name="ht"></label></p>
+                    <p><label> WEIGHT <input type="text" name="wt"></label></p>
+                    <p><label> BLOOD GROUP <input type="text" name="bg"></label></p>
+                    <p><label> DISEASE <input type="text area" name="ds"></label></p>
+                    <p><input type="submit" value="Update"></p>
+             </form>
+                 
+         </fieldset>
+        
+        <fieldset class="all"  id="all"> <legend align="center"> All</legend>
+                <form action="all.jsp" method="post"> 
+                      <p><input type="submit" value="Print All"></p>
+                </form>
+                 
+               </fieldset>
+        </div>
+            
+                <div class="wrapper">
+            <button  onclick="func1()">Register</button> 
+            <button onclick="func()">Search</button> 
+            <button onclick="func2()">Deletion</button>
+            <button onclick="func3()">Updation</button>     
+            <button onclick="func4()">All</button> </div>
+              
+  
+    </body>
+</html>
