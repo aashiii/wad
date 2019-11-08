@@ -1,12 +1,13 @@
 <%-- 
-    Document   : en
-    Created on : 31 Oct, 2019, 3:13:16 PM
+    Document   : del
+    Created on : 8 Nov, 2019, 3:21:48 PM
     Author     : wad13
 --%>
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+        String mr = request.getParameter("mr");
         String name = request.getParameter("nm");
         String dob = request.getParameter("dob");
         String ht = request.getParameter("ht");
@@ -28,10 +29,7 @@
         Connection conn = DriverManager.getConnection(url,db_user,db_pass);
         Statement smt = conn.createStatement();
         
-        int i = smt.executeUpdate("insert into pat(name,dob,height,weight,bldgrp,ds,addr) values('"+name+"','"+dob+"','"+ht+"','"+wt+"','"+bg+"','"+ds+"','"+adr+"');");
+       int i = smt.executeUpdate("update pat set name='"+name+"' dob='"+dob+"' height='"+ht+"' weight='"+wt+"' bldgrp='"+bg+"'ds='"+ds+"' addr='"+adr+"' where mr="+mr+";");
         
-        if(i==1)
-            out.println("Enrolled");
-        ResultSet rs=smt.executeQuery("Select * from pat;");
-        
+        out.println("Updated");
 %>
